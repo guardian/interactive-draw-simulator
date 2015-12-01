@@ -1,0 +1,15 @@
+{{#each groups}}
+	<div class="group-container">
+		<h3>Group {{group}}</h2>
+		<ul>
+		{{#each teams}}
+			<li class="team-order-{{no}}">
+				<span class="flag">
+					<img src="/imgs/flags/{{flag}}.svg" />
+				</span>
+				<span class="team-name team-item-{{name}}">{{name}}</span>
+			</li>
+		{{/each}}
+		</ul>
+	</div>
+{{/each}}

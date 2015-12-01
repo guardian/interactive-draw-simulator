@@ -1,0 +1,139 @@
+[
+	{
+		"pot": 1,
+		"teams":[
+			{
+				"name": "Spain",
+				"rank": 6,
+				"flag": "es",
+				"potNumber": 1
+			}, {
+				"name": "Germany",
+				"rank": 2,
+				"flag": "de",
+				"potNumber": 1
+			}, {
+				"name": "England",
+				"rank": 9,
+				"flag": "england",
+				"potNumber": 1
+			}, {
+				"name": "Portugal",
+				"rank": 4,
+				"flag": "pt",
+				"potNumber": 1
+			}, {
+				"name": "Belgium",
+				"rank": 1,
+				"flag": "be",
+				"potNumber": 1
+			}
+		]
+	},{
+		"pot": 2,
+		"teams": [
+			{
+				"name": "Italy",
+				"rank": 13,
+				"flag": "it",
+				"potNumber": 2
+			}, {
+				"name": "Russia",
+				"rank": 23,
+				"flag": "ru",
+				"potNumber": 2
+			}, {
+				"name": "Switzerland",
+				"rank": 11,
+				"flag": "ch",
+				"potNumber": 2
+			}, {
+				"name": "Austria",
+				"rank": 10,
+				"flag": "at",
+				"potNumber": 2
+			}, {
+				"name": "Croatia",
+				"rank": 19,
+				"flag": "hr",
+				"potNumber": 2
+			}, {
+				"name": "Ukraine",
+				"rank": 28,
+				"flag": "ua",
+				"potNumber": 2
+			}
+		]
+	},{
+		"pot": 3,
+		"teams": [
+			{
+				"name": "Czech Republic",
+				"rank": 17,
+				"flag": "cz",
+				"potNumber": 3
+			}, {
+				"name": "Sweden",
+				"rank": 45,
+				"flag": "se",
+				"potNumber": 3
+			}, {
+				"name": "Poland",
+				"rank": 38,
+				"flag": "pl",
+				"potNumber": 3
+			}, {
+				"name": "Romania",
+				"rank": 14,
+				"flag": "ro",
+				"potNumber": 3
+			}, {
+				"name": "Slovakia",
+				"rank": 27,
+				"flag": "sk",
+				"potNumber": 3
+			}, {
+				"name": "Hungary",
+				"rank": 33,
+				"flag": "hu",
+				"potNumber": 3
+			}
+		]
+	},{
+		"pot": 4,
+		"teams": [
+			{
+				"name": "Turkey",
+				"rank": 18,
+				"flag": "tr",
+				"potNumber": 4
+			}, {
+				"name": "Republic of Ireland",
+				"rank": 42,
+				"flag": "ie",
+				"potNumber": 4
+			}, {
+				"name": "Iceland",
+				"rank": 31,
+				"flag": "is",
+				"potNumber": 4
+			}, {
+				"name": "Wales",
+				"rank": 15,
+				"flag": "wales",
+				"potNumber": 4
+			}, {
+				"name": "Albania",
+				"rank": 36,
+				"flag": "al",
+				"potNumber": 4
+			}, {
+				"name": "Northern Ireland",
+				"rank": 29,
+				"flag": "n-ireland",
+				"potNumber": 4
+			}
+		]
+	}
+]
+

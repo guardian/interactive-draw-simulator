@@ -1,0 +1,205 @@
+@import 'modules/_breakpoints';
+@import 'modules/_typography';
+
+@import 'modules/_palette';
+@import 'modules/_grid-system';
+@import 'modules/_mq';
+@import 'modules/_side-margins';
+@import 'margins';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+// Remove <figure> margin
+.interactive {
+    margin: 0;
+
+    *, * *{
+    	box-sizing:border-box;
+    }
+
+    .gv-wrapper{
+    	padding:0 20px;
+    }
+
+    #draw-container{
+    	overflow:hidden;
+    }
+    h1{
+    	font-size:28px;
+    	color:#333;
+    	line-height:1.2em;
+    	font-weight:bold;
+    	font-family:$f-serif-headline;
+    	span{
+    		color:#4BC6DF;
+    	}
+    }
+    h2{
+    	font-size:22px;
+    	font-family:$f-serif-headline;
+    	font-weight:normal;
+    	color:#767676;
+    	line-height:30px;;
+    }
+    #current-pot{
+    	text-align: center;
+    	font-family: $f-sans-serif-text;
+    	font-size:14px;
+    	margin:6px 0;
+    	color:#767676;
+    	font-weight:bold;
+    }
+    #start-draw{
+    	background: #4BC6DF;
+    	height:54px;
+    	border:none;
+    	border-radius:44px;
+    	font-family:$f-serif-headline;
+    	font-weight:bold;
+    	color:#fff;
+    	font-size:20px;
+    	padding:0 60px;
+    	outline:none;
+    	margin:0 auto 30px;
+    	display:block;
+    	cursor: pointer;
+    	&:hover{
+    		background:#197caa;
+    	}
+    }
+    .group-container{
+    	float:left;
+		width:50%;
+		margin: 0 0;	
+		min-height:160px;
+
+    	h3{
+    		font-family:$f-serif-headline;
+    		font-size:20px;
+    		margin:0;
+
+    	}
+    	ul{
+    		margin:0;
+    		padding:0;
+    		li{
+    			list-style:none;
+    			padding:0;
+    			margin:0;
+    			font-size:14px;
+    			position: relative;
+    			padding-left:20px;
+    			margin-bottom:4px;
+
+    			.team-name{
+    				opacity:0;
+    				transition: 0.4s opacity;
+    			}
+
+    			.team-item-England{
+    				font-weight:bold;
+    			}
+
+    			.flag{
+    				width:14px;
+    				height:14px;
+    				border-radius:14px;
+    				display:block;
+    				background:#eee;
+    				position: absolute;
+    				left:0;
+    				top:2px;
+    				overflow:hidden;
+                    line-height: 0;
+    				img{
+    					height:100%;
+    					opacity:0;
+    					transition: 0.4s opacity;
+    				}
+    			}
+
+    			&.drawn{
+    				.team-name{
+    					opacity:1;
+    				}
+    				.flag{
+    					animation: flag ease 0.4s;
+    					img{
+    						opacity:1;
+    					}
+    				}
+    			}
+    		}
+    	}
+    }
+
+    @keyframes flag {
+        0% {
+        	transform:scale(1);
+        }
+        50% {
+        	transform:scale(1.8);
+        }
+        100%{
+        }
+    }
+
+    @media ( min-width: 480px ) {
+        .group-container{
+        	width:33%;
+        }
+    }
+
+    @media ( min-width: 540px ) {
+        .group-container{
+        	h3{
+        		margin-bottom:0.2em;
+        	}
+        	ul li {
+        		.flag{
+        			width:16px;
+        			height:16px;
+        		}
+        		.team-name{
+        			font-size:16px;
+        		}
+        	}
+        }
+    }
+    @media(min-width:breakpoints(tablet)){
+        h1{
+            font-size:30px;
+        }
+    }
+    @media(min-width:breakpoints(desktop)){
+        h1{
+            font-size:36px;
+        }
+        #draw-wrapper{
+            max-width:620px;
+        }
+        .group-container ul li{
+            // margin-bottom: 8px;
+            .team-name{
+                font-size:18px;
+            }
+            .flag{
+                top:4px;
+            }
+            
+        }
+    }
+    @media(min-width:breakpoints(leftCol)){
+        #draw-wrapper{
+            margin-left:140px;
+        }
+    }
+    @media(min-width:breakpoints(wide)){
+        #draw-wrapper{
+            margin-left:220px;
+        }
+    }
+}
