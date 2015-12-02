@@ -21,7 +21,7 @@ body {
     }
 
     .gv-wrapper{
-    	padding:0 20px;
+    	padding:0 10px;
     }
     #draw-header{
         padding-top:1px;
@@ -45,17 +45,17 @@ body {
     	}
     }
     h2{
-    	font-size:22px;
+    	font-size:18px;
     	font-family:$f-serif-headline;
     	font-weight:normal;
     	color:#767676;
-    	line-height:30px;;
+    	line-height:24px;
     }
     #current-pot{
     	text-align: center;
     	font-family: $f-sans-serif-text;
     	font-size:14px;
-    	margin:6px 0;
+    	margin:6px 0 18px;
     	color:#767676;
     	font-weight:bold;
     }
@@ -89,7 +89,7 @@ body {
     	font-size:20px;
     	padding:0 60px;
     	outline:none;
-    	margin:0 auto 30px;
+    	margin:30px auto 0;
     	display:block;
     	cursor: pointer;
     	&:hover{
@@ -105,12 +105,14 @@ body {
     	h3{
     		font-family:$f-serif-headline;
     		font-size:20px;
-    		margin:0;
+    		margin:0 0 6px;
+            line-height:1em;
             .difficultyMeter{
                 font-family: $f-sans-serif-text;
                 font-size:12px;
                 color:#767676;
                 font-weight:normal;
+                display:block;
                 .odometer{
                     width:16px;
                     height:18px;
@@ -235,6 +237,9 @@ body {
         .group-container{
         	width:33%;
         }
+        .gv-wrapper{
+            padding:0 20px;
+        }
     }
 
     @media ( min-width: 540px ) {
@@ -253,6 +258,15 @@ body {
         	}
         }
     }
+     @media ( min-width: 640px ) {
+        .group-container{
+            h3{
+                .difficultyMeter{
+                    display:inline-block;
+                }
+            }
+        }
+    }
     @media(min-width:breakpoints(tablet)){ //740px
         h1{
             font-size:30px;
@@ -262,6 +276,10 @@ body {
         h1{
             font-size:36px;
         }
+        h2{
+            font-size:22px;
+            line-height:30px;
+        }
         #draw-wrapper{
             margin-left:140px;
         }
@@ -269,7 +287,7 @@ body {
             max-width:620px;
         }
         #draw-container{
-            max-width:720px;
+            // max-width:720px;
         }
         .group-container{
             margin-bottom:40px;
@@ -289,6 +307,9 @@ body {
     @media(min-width:breakpoints(leftCol)){ //1140px
         #draw-wrapper{
             
+        }
+        .group-container{
+            width:280px;
         }
     }
     @media(min-width:breakpoints(wide)){ //1300px
