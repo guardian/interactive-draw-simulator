@@ -1,11 +1,17 @@
 {{#each groups}}
 	<div class="group-container">
-		<h3>Group {{group}}</h2>
+		<h3>Group {{group}} 
+			<span class="difficultyMeter">
+				Difficulty
+				<span class="odometer"></span>
+				/10
+			</span>
+		</h3>
 		<ul>
 		{{#each teams}}
 			<li class="team-order-{{no}}">
 				<span class="flag">
-					<img src="/imgs/flags/{{flag}}.svg" />
+					<img src="{{flag}}" />
 				</span>
 				<span class="team-name team-item-{{name}}">{{name}}</span>
 			</li>

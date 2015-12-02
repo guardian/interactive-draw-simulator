@@ -23,9 +23,16 @@ body {
     .gv-wrapper{
     	padding:0 20px;
     }
+    #draw-header{
+        padding-top:1px;
+    }
 
     #draw-container{
-    	overflow:hidden;
+    	&:after{
+            clear:both;
+            display:block;
+            content: '';
+        }
     }
     h1{
     	font-size:28px;
@@ -51,6 +58,25 @@ body {
     	margin:6px 0;
     	color:#767676;
     	font-weight:bold;
+    }
+    #pots-container{
+        position: relative;
+        width:100%;
+        height:20px;
+        .team-circle{
+            width:16px;
+            height:16px;
+            position: absolute;
+            &:before{
+                width:16px;
+                height:16px;
+                border-radius:30px;
+                display:block;
+                content:'';
+                background:#eee;
+                transform-origin:10% 10%;
+            }
+        }
     }
     #start-draw{
     	background: #4BC6DF;
@@ -80,7 +106,24 @@ body {
     		font-family:$f-serif-headline;
     		font-size:20px;
     		margin:0;
-
+            .difficultyMeter{
+                font-family: $f-sans-serif-text;
+                font-size:12px;
+                color:#767676;
+                font-weight:normal;
+                .odometer{
+                    width:16px;
+                    height:18px;
+                    border:1px solid #eee;
+                    display:inline-block;
+                    margin-bottom:-4px;
+                    background-image: url(/imgs/odometer.png);
+                    background-repeat:no-repeat;
+                    background-size:14px;
+                    background-position:0 20px;
+                    transition: background-position 2s;
+                }
+            }
     	}
     	ul{
     		margin:0;
@@ -135,6 +178,49 @@ body {
     		}
     	}
     }
+    #share-container{
+        max-width:620px;
+        border-top: 1px solid #efefef;
+        margin:40px 0 80px;
+        opacity:0;
+        transition:opacity 0.5s;
+        #share-line{
+            font-size:28px;
+            margin-top:20px;
+        }
+        .share-country-flag{
+            width:18px;
+            height:18px;
+            border-radius:32px;
+            overflow:hidden;
+            display:inline-block;
+            line-height:0;
+            margin-right:4px;
+            img{
+                width:100%;
+            }
+        }
+        button{
+            width:40px;
+            height:40px;
+            border-radius:40px;
+            border:none;
+            outline: none;
+            background: #333;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor:pointer;
+            &.share-twitter{
+                background-image: url(/imgs/twitter.svg);
+            }
+            &.share-facebook{
+                background-image: url(/imgs/facebook.svg);
+            }
+        }
+        &.active{
+            opacity:1;
+        }
+    }
 
     @keyframes flag {
         0% {
@@ -142,8 +228,6 @@ body {
         }
         50% {
         	transform:scale(1.8);
-        }
-        100%{
         }
     }
 
@@ -169,37 +253,73 @@ body {
         	}
         }
     }
-    @media(min-width:breakpoints(tablet)){
+    @media(min-width:breakpoints(tablet)){ //740px
         h1{
             font-size:30px;
         }
     }
-    @media(min-width:breakpoints(desktop)){
+    @media(min-width:breakpoints(desktop)){ //980px
         h1{
             font-size:36px;
         }
         #draw-wrapper{
+            margin-left:140px;
+        }
+        #draw-header{
             max-width:620px;
         }
-        .group-container ul li{
-            // margin-bottom: 8px;
-            .team-name{
-                font-size:18px;
+        #draw-container{
+            max-width:720px;
+        }
+        .group-container{
+            margin-bottom:40px;
+            width:220px;
+            margin-right:20px;
+            ul li{
+                padding-left:22px;
+                .team-name{
+                    font-size:18px;
+                }
+                .flag{
+                    top:4px;
+                }
             }
-            .flag{
-                top:4px;
-            }
+        }
+    }
+    @media(min-width:breakpoints(leftCol)){ //1140px
+        #draw-wrapper{
             
         }
     }
-    @media(min-width:breakpoints(leftCol)){
-        #draw-wrapper{
-            margin-left:140px;
-        }
-    }
-    @media(min-width:breakpoints(wide)){
+    @media(min-width:breakpoints(wide)){ //1300px
         #draw-wrapper{
             margin-left:220px;
         }
     }
 }
+
+// @for $i from 1 through 24 {
+//     $xPosition: random(100);
+//     $yPosition: random(50);
+//     $timeMove: random(2)+1;
+//     $timeRotate: random(5)+2;
+
+//     @keyframes move-#{$i}{
+//         0%{transform: translate(0,0)}
+//         50%{transform: translate($xPosition + px,$yPosition + px)}
+//         100%{transform: translate(0,0)}
+//     } 
+
+//     .team-circle-#{$i}{
+//         animation: move-#{$i} linear infinite;
+//         animation-duration: $timeMove +s;
+//         &:before{
+//             animation: rotate 1s linear infinite;
+//         }
+//     }
+// }
+
+// @keyframes rotate{
+//     0%{transform: rotate(0)}
+//     100%{transform: rotate(360deg)}
+// }

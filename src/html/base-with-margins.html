@@ -1,12 +1,31 @@
 <div class="l-side-margins">
     <div class="gv-wrapper">
     	<div id="draw-wrapper">
-			<h1><span>Euro 2016</span> / Create your own Euro 2016 draw</h1>
-			<h2>Next saturday the draw for Euro 2016 will take a place. 24 countries, divided in 4 pots will be put in groups for the group stage of Euro 2016. Create your own random draw below, and we’ll tell how difficult your group is. Share the result on Twitter and Facebook</h2>
-			<div id="current-pot"></div>
-			<button id="start-draw">Start draw</button>
+    		<div id="draw-header">
+				<h1><span>Euro 2016</span> / Create your own Euro 2016 draw</h1>
+				<h2>Next saturday the draw for Euro 2016 will take a place. 24 countries, divided in 4 pots will be put in groups for the group stage of Euro 2016. Create your own random draw below, and we’ll tell how difficult your group is. Share the result on Twitter and Facebook</h2>
+				
+				<button id="start-draw">Start draw</button>
+				<div id="current-pot"></div>
+				<div id="pots-container"></div>
+			</div>
 
+			<!-- MAGIC -->
 			<div id="draw-container"></div>
+
+
+			<div id="share-container">
+				<p id="share-line">Do you think a group with 
+					<span id="share-country-1"><span class="share-country-flag"></span><span class="share-country-name"></span></span>, 
+					<span id="share-country-2"><span class="share-country-flag"></span><span class="share-country-name"></span> and 
+					<span id="share-country-3"><span class="share-country-flag"></span><span class="share-country-name"></span> is the best for England? 
+				</p>
+
+				<div id="share-button-container">
+					<button class="share-twitter"></button>
+					<button class="share-facebook"></button>
+				</div>
+			</div>
 		</div>
     </div>
 </div>
