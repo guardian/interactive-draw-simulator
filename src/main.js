@@ -17,7 +17,7 @@ var selectedCountry = "england";
 var groupsOriginal = [
 	{
 		"group": "A",
-		"teams": [{"name":"France","no": 0, "pot": 0, "flag": "/imgs/flags/fr.svg","rank":24},"","",""]
+		"teams": [{"name":"France","no": 0, "pot": 0, "flag": "/imgs/flags/fr.svg","rank":6},"","",""]
 	},{
 		"group": "B",
 		"teams": ["","","",""]
@@ -37,9 +37,9 @@ var groupsOriginal = [
 ]
 
 var difficulty = {
-	"min": 40,
-	"max": 122,
-	"total": 82
+	"min": 4,
+	"max": 24,
+	"total": 20
 }
 
 var simulatorTemplate = Handlebars.compile( 

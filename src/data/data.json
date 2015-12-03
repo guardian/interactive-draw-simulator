@@ -4,31 +4,36 @@
 		"teams":[
 			{
 				"name": "Spain",
-				"rank": 6,
+				"uefa": 2,
+				"rank": 1,
 				"flag": "/imgs/flags/es.svg",
 				"id": "es",
 				"potNumber": 1
 			}, {
 				"name": "Germany",
+				"uefa": 1,
 				"rank": 2,
 				"flag": "/imgs/flags/de.svg",
 				"id": "de",
 				"potNumber": 1
 			}, {
 				"name": "England",
-				"rank": 9,
+				"uefa": 3,
+				"rank": 3,
 				"flag": "/imgs/flags/england.svg",
 				"id": "england",
 				"potNumber": 1
 			}, {
 				"name": "Portugal",
+				"uefa": 4,
 				"rank": 4,
 				"flag": "/imgs/flags/pt.svg",
 				"id": "pt",
 				"potNumber": 1
 			}, {
 				"name": "Belgium",
-				"rank": 1,
+				"uefa": 5,
+				"rank": 5,
 				"flag": "/imgs/flags/be.svg",
 				"id": "be",
 				"potNumber": 1
@@ -39,37 +44,43 @@
 		"teams": [
 			{
 				"name": "Italy",
-				"rank": 13,
+				"uefa": 6,
+				"rank": 1,
 				"flag": "/imgs/flags/it.svg",
 				"id": "it",
 				"potNumber": 2
 			}, {
 				"name": "Russia",
-				"rank": 23,
+				"uefa": 9,
+				"rank": 2,
 				"flag": "/imgs/flags/ru.svg",
 				"id": "ru",
 				"potNumber": 2
 			}, {
 				"name": "Switzerland",
-				"rank": 11,
+				"uefa": 10,
+				"rank": 3,
 				"flag": "/imgs/flags/ch.svg",
 				"id": "ch",
 				"potNumber": 2
 			}, {
 				"name": "Austria",
-				"rank": 10,
+				"uefa": 11,
+				"rank": 4,
 				"flag": "/imgs/flags/at.svg",
 				"id": "at",
 				"potNumber": 2
 			}, {
 				"name": "Croatia",
-				"rank": 19,
+				"uefa": 12,
+				"rank": 5,
 				"flag": "/imgs/flags/hr.svg",
 				"id": "hr",
 				"potNumber": 2
 			}, {
 				"name": "Ukraine",
-				"rank": 28,
+				"uefa": 14,
+				"rank": 6,
 				"flag": "/imgs/flags/ua.svg",
 				"id": "ua",
 				"potNumber": 2
@@ -80,37 +91,43 @@
 		"teams": [
 			{
 				"name": "Czech Republic",
-				"rank": 17,
+				"uefa": 15,
+				"rank": 1,
 				"flag": "/imgs/flags/cz.svg",
 				"id": "cz",
 				"potNumber": 3
 			}, {
 				"name": "Sweden",
-				"rank": 45,
+				"uefa": 16,
+				"rank": 2,
 				"flag": "/imgs/flags/se.svg",
 				"id": "se",
 				"potNumber": 3
 			}, {
 				"name": "Poland",
-				"rank": 38,
+				"uefa": 17,
+				"rank": 3,
 				"flag": "/imgs/flags/pl.svg",
 				"id": "pl",
 				"potNumber": 3
 			}, {
 				"name": "Romania",
-				"rank": 14,
+				"uefa": 18,
+				"rank": 4,
 				"flag": "/imgs/flags/ro.svg",
 				"id": "ro",
 				"potNumber": 3
 			}, {
 				"name": "Slovakia",
-				"rank": 27,
+				"uefa": 19,
+				"rank": 5,
 				"flag": "/imgs/flags/sk.svg",
 				"id": "sk",
 				"potNumber": 3
 			}, {
 				"name": "Hungary",
-				"rank": 33,
+				"uefa": 20,
+				"rank": 6,
 				"flag": "/imgs/flags/hu.svg",
 				"id": "hu",
 				"potNumber": 3
@@ -121,37 +138,43 @@
 		"teams": [
 			{
 				"name": "Turkey",
-				"rank": 18,
+				"uefa": 22,
+				"rank": 1,
 				"flag": "/imgs/flags/tr.svg",
 				"id": "tr",
 				"potNumber": 4
 			}, {
 				"name": "Republic of Ireland",
-				"rank": 42,
+				"uefa": 23,
+				"rank": 2,
 				"flag": "/imgs/flags/ie.svg",
 				"id": "ie",
 				"potNumber": 4
 			}, {
 				"name": "Iceland",
-				"rank": 31,
+				"uefa": 27,
+				"rank": 3,
 				"flag": "/imgs/flags/is.svg",
 				"id": "is",
 				"potNumber": 4
 			}, {
 				"name": "Wales",
-				"rank": 15,
+				"uefa": 28,
+				"rank": 4,
 				"flag": "/imgs/flags/wales.svg",
 				"id": "wales",
 				"potNumber": 4
 			}, {
 				"name": "Albania",
-				"rank": 36,
+				"uefa": 31,
+				"rank": 5,
 				"flag": "/imgs/flags/al.svg",
 				"id": "al",
 				"potNumber": 4
 			}, {
 				"name": "Northern Ireland",
-				"rank": 29,
+				"uefa": 33,
+				"rank": 6,
 				"flag": "/imgs/flags/n-ireland.svg",
 				"id": "ni",
 				"potNumber": 4
