@@ -11,9 +11,9 @@ var Handlebars = require('handlebars/dist/cjs/handlebars');
 var pots = require('./data/data.json');
 var potsContainer;
 var shareContainer;
-var newGroupStage;
+var groups;
 
-var groups = [
+var groupsOriginal = [
 	{
 		"group": "A",
 		"teams": [{"name":"France","no": 0, "pot": 0, "flag": "/imgs/flags/fr.svg","rank":24},"","",""]
@@ -47,10 +47,8 @@ var simulatorTemplate = Handlebars.compile(
 );
 
 function createDraw() {
-	newGroupStage = JSON.parse(JSON.stringify(groups));
+	groups = JSON.parse(JSON.stringify(groupsOriginal));
 	var order = 1;
-	potsContainer = document.querySelector('#pots-container');
-	potsContainer.innerHTML = "";
 
 	shareContainer.className -= " active";
 	pots.forEach(function(pot,potNumber){
@@ -58,7 +56,7 @@ function createDraw() {
 
 		pot.teams.forEach(function(team, teamNumber){
 			var randomNumber = Math.floor(Math.random()*range.length);
-			var randomGroup = newGroupStage[range[randomNumber]];
+			var randomGroup = groups[range[randomNumber]];
 			range.splice(randomNumber,1);
 
 			team.no = order;
@@ -87,7 +85,7 @@ function createDraw() {
 
 	
 
-	newGroupStage.forEach(function(group){
+	groups.forEach(function(group){
 		var groupDifficulty = 0;
 		group.teams.forEach(function(team){
 			groupDifficulty += team.rank;
@@ -97,10 +95,10 @@ function createDraw() {
 
 	
 	
-	var simulatorHTML = simulatorTemplate({groups:newGroupStage});
+	var simulatorHTML = simulatorTemplate({groups:groups});
 	document.querySelector('#draw-container').innerHTML = simulatorHTML;
 
-	animateDraw(newGroupStage);
+	animateDraw(groups);
 }
 
 function fillPotContainer(team){
@@ -111,15 +109,17 @@ function fillPotContainer(team){
 	potsContainer.appendChild(teamCircle);
 }
 
-function animateDraw(finalGroup){
+function animateDraw(){
 	var currentPot = 1;
+	updatePot(currentPot);
 
 	function animateTeam(no,newPot){
 		var teamEl = document.querySelector('.team-order-' + no);
-		teamEl.className += " drawn";
+		var currentFlagEl = document.querySelector('.current-flag-' + teamEl.getAttribute('data-team-id'));
 
-		if(newPot){
-			updatePot(newPot);
+		teamEl.className += " drawn";
+		if(currentFlagEl){
+			currentFlagEl.className += " drawn";
 		}
 
 		if(no < 23){
@@ -127,16 +127,19 @@ function animateDraw(finalGroup){
 				no++;
 				currentPot++;
 				setTimeout(function(){
+					updatePot(currentPot);
+				},500)
+				setTimeout(function(){
 					animateTeam(no,currentPot);
-				},1500)
+				},2000)
 			}else{
 				no++;
 				setTimeout(function(){
 					animateTeam(no,false);
-				},100)
+				},200)
 			}
 		}else if(no === 23){
-			onAnimationEnd(finalGroup);
+			onAnimationEnd(groups);
 		}
 	}
 
@@ -145,12 +148,24 @@ function animateDraw(finalGroup){
 
 function updatePot(pot){
 	var statusEl = document.querySelector('#current-pot');
-	statusEl.innerHTML = "Seeding pot " + pot;
+	statusEl.querySelector('p').innerHTML = "Seeding pot " + pot;
+
+	var statusFlagsEl = statusEl.querySelector('#current-flags');
+	statusFlagsEl.innerHTML = "";
+
+	pots[pot-1].teams.forEach(function(team){
+		var flagEl = document.createElement('div');
+		flagEl.className = "current-flag-container current-flag-" + team.id;
+		flagEl.innerHTML = "<img src='" + team.flag + "' />";
+
+		statusFlagsEl.appendChild(flagEl);
+	})
 }
 
-function onAnimationEnd(finalGroups){
+function onAnimationEnd(){
 	var englandGroup;
 	var odometerValues = {
+		0: 4,
 		1: 4,
 		2: -11,
 		3: -26,
@@ -164,15 +179,14 @@ function onAnimationEnd(finalGroups){
 	}
 
 	var groupContainers = document.querySelectorAll('.group-container');
-	console.log(newGroupStage)
 
 	for(var i = 0; i<groupContainers.length; i++){
-		var diffValue = odometerValues[newGroupStage[i].difficulty];
+		var diffValue = odometerValues[groups[i].difficulty];
 
 		groupContainers[i].querySelector('h3 .odometer').style.backgroundPosition = "0 " + (diffValue) + "px";
 	}
 
-	finalGroups.forEach(function(group){
+	groups.forEach(function(group){
 		group.teams.forEach(function(team){
 			if(team.name === "England"){
 				englandGroup = group;
@@ -189,8 +203,9 @@ function onAnimationEnd(finalGroups){
 			countryContainer.querySelector('.share-country-name').innerHTML = team.name;
 			countryContainer.querySelector('.share-country-flag').innerHTML = "<img src='" + team.flag + "' />";
 		}
-		
 	})
+
+	document.querySelector('#current-pot p').innerHTML = "";
 
 	shareContainer.className += " active";
 }

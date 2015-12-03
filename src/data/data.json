@@ -6,26 +6,31 @@
 				"name": "Spain",
 				"rank": 6,
 				"flag": "/imgs/flags/es.svg",
+				"id": "es",
 				"potNumber": 1
 			}, {
 				"name": "Germany",
 				"rank": 2,
 				"flag": "/imgs/flags/de.svg",
+				"id": "de",
 				"potNumber": 1
 			}, {
 				"name": "England",
 				"rank": 9,
 				"flag": "/imgs/flags/england.svg",
+				"id": "england",
 				"potNumber": 1
 			}, {
 				"name": "Portugal",
 				"rank": 4,
 				"flag": "/imgs/flags/pt.svg",
+				"id": "pt",
 				"potNumber": 1
 			}, {
 				"name": "Belgium",
 				"rank": 1,
 				"flag": "/imgs/flags/be.svg",
+				"id": "be",
 				"potNumber": 1
 			}
 		]
@@ -36,31 +41,37 @@
 				"name": "Italy",
 				"rank": 13,
 				"flag": "/imgs/flags/it.svg",
+				"id": "it",
 				"potNumber": 2
 			}, {
 				"name": "Russia",
 				"rank": 23,
 				"flag": "/imgs/flags/ru.svg",
+				"id": "ru",
 				"potNumber": 2
 			}, {
 				"name": "Switzerland",
 				"rank": 11,
 				"flag": "/imgs/flags/ch.svg",
+				"id": "ch",
 				"potNumber": 2
 			}, {
 				"name": "Austria",
 				"rank": 10,
 				"flag": "/imgs/flags/at.svg",
+				"id": "at",
 				"potNumber": 2
 			}, {
 				"name": "Croatia",
 				"rank": 19,
 				"flag": "/imgs/flags/hr.svg",
+				"id": "hr",
 				"potNumber": 2
 			}, {
 				"name": "Ukraine",
 				"rank": 28,
 				"flag": "/imgs/flags/ua.svg",
+				"id": "ua",
 				"potNumber": 2
 			}
 		]
@@ -71,31 +82,37 @@
 				"name": "Czech Republic",
 				"rank": 17,
 				"flag": "/imgs/flags/cz.svg",
+				"id": "cz",
 				"potNumber": 3
 			}, {
 				"name": "Sweden",
 				"rank": 45,
 				"flag": "/imgs/flags/se.svg",
+				"id": "se",
 				"potNumber": 3
 			}, {
 				"name": "Poland",
 				"rank": 38,
 				"flag": "/imgs/flags/pl.svg",
+				"id": "pl",
 				"potNumber": 3
 			}, {
 				"name": "Romania",
 				"rank": 14,
 				"flag": "/imgs/flags/ro.svg",
+				"id": "ro",
 				"potNumber": 3
 			}, {
 				"name": "Slovakia",
 				"rank": 27,
 				"flag": "/imgs/flags/sk.svg",
+				"id": "sk",
 				"potNumber": 3
 			}, {
 				"name": "Hungary",
 				"rank": 33,
 				"flag": "/imgs/flags/hu.svg",
+				"id": "hu",
 				"potNumber": 3
 			}
 		]
@@ -106,31 +123,37 @@
 				"name": "Turkey",
 				"rank": 18,
 				"flag": "/imgs/flags/tr.svg",
+				"id": "tr",
 				"potNumber": 4
 			}, {
 				"name": "Republic of Ireland",
 				"rank": 42,
 				"flag": "/imgs/flags/ie.svg",
+				"id": "ie",
 				"potNumber": 4
 			}, {
 				"name": "Iceland",
 				"rank": 31,
 				"flag": "/imgs/flags/is.svg",
+				"id": "is",
 				"potNumber": 4
 			}, {
 				"name": "Wales",
 				"rank": 15,
 				"flag": "/imgs/flags/wales.svg",
+				"id": "wales",
 				"potNumber": 4
 			}, {
 				"name": "Albania",
 				"rank": 36,
 				"flag": "/imgs/flags/al.svg",
+				"id": "al",
 				"potNumber": 4
 			}, {
 				"name": "Northern Ireland",
 				"rank": 29,
 				"flag": "/imgs/flags/n-ireland.svg",
+				"id": "ni",
 				"potNumber": 4
 			}
 		]
