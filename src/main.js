@@ -10,8 +10,9 @@ var base = require('./html/base-with-margins.html');
 var Handlebars = require('handlebars/dist/cjs/handlebars');
 var pots = require('./data/data.json');
 var potsContainer;
-var shareContainer;
 var groups;
+var nextPotTime, nextTeamTime;
+var selectedCountry = "england";
 
 var groupsOriginal = [
 	{
@@ -47,10 +48,20 @@ var simulatorTemplate = Handlebars.compile(
 );
 
 function createDraw() {
+	if(nextPotTime){
+		clearTimeout(nextPotTime);
+		nextPotTime = null;
+	}
+	if(nextTeamTime){
+		clearTimeout(nextTeamTime);
+		nextTeamTime = null;
+	}
 	groups = JSON.parse(JSON.stringify(groupsOriginal));
 	var order = 1;
+	document.querySelector('#current-pot p').innerHTML = "";
+	document.querySelector('#current-pot #current-flags').innerHTML = "";
+	document.querySelector('#current-pot').className -= " draw-ended";
 
-	shareContainer.className -= " active";
 	pots.forEach(function(pot,potNumber){
 		var range = (potNumber === 0) ? [1,2,3,4,5] : [0,1,2,3,4,5];
 
@@ -123,20 +134,21 @@ function animateDraw(){
 		}
 
 		if(no < 23){
+			var testspeed = false;
 			if(no === 5 || no === 11 || no === 17){
 				no++;
 				currentPot++;
 				setTimeout(function(){
 					updatePot(currentPot);
-				},500)
-				setTimeout(function(){
+				},testspeed || 500)
+				nextPotTime = setTimeout(function(){
 					animateTeam(no,currentPot);
-				},2000)
+				},testspeed || 1500)
 			}else{
 				no++;
-				setTimeout(function(){
+				nextTeamTime = setTimeout(function(){
 					animateTeam(no,false);
-				},200)
+				},testspeed || 200)
 			}
 		}else if(no === 23){
 			onAnimationEnd(groups);
@@ -163,7 +175,6 @@ function updatePot(pot){
 }
 
 function onAnimationEnd(){
-	var englandGroup;
 	var odometerValues = {
 		0: 4,
 		1: 4,
@@ -186,38 +197,37 @@ function onAnimationEnd(){
 		groupContainers[i].querySelector('h3 .odometer').style.backgroundPosition = "0 " + (diffValue) + "px";
 	}
 
-	groups.forEach(function(group){
-		group.teams.forEach(function(team){
-			if(team.name === "England"){
-				englandGroup = group;
-			}
-		})
-	})
-
-	englandGroup.teams.forEach(function(team,i){
-		if(team.name!=="England"){
-			var countryContainer = shareContainer.querySelector('#share-country-' + i);
-			var flagImage = document.createElement('img');
-			flagImage.src = team.flag;
-
-			countryContainer.querySelector('.share-country-name').innerHTML = team.name;
-			countryContainer.querySelector('.share-country-flag').innerHTML = "<img src='" + team.flag + "' />";
-		}
-	})
-
-	document.querySelector('#current-pot p').innerHTML = "";
-
-	shareContainer.className += " active";
+	document.querySelector('#current-pot').className += " draw-ended";
 }
 
 function share(e){
+	var favoriteGroup;
     var btn = e.srcElement;
     var shareWindow;
     var twitterBaseUrl = "http://twitter.com/share?text=";
     var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
-    var shareMessage = "This would be my favorite draw. Create your own on http://gu.com/eejj394\r\r1. England\r2. Wales\r4. Slovakia\r4. Turkey";
+    var shareMessageText = "This would be my favourite Euro 2016 group\r";
+    var shareMessageList = "";
     var shareImage = "";
-    var shareUrl = " "
+    var shareUrl = "http://gu.com";
+
+    groups.forEach(function(group){
+		group.teams.forEach(function(team){
+			if(team.id === selectedCountry){
+				favoriteGroup = group;
+			}
+		})
+	})
+
+	favoriteGroup.teams.forEach(function(team,i){
+		var isFavorite = (team.id === selectedCountry) ? "⚽️" : ""
+		shareMessageList +=  "\r" + (i+1) + "." + team.name + isFavorite;
+	})
+
+	console.log(shareMessageList);
+
+
+	var shareMessage = shareMessageText + shareMessageList + "\r\rCreate your own";
 
     if( btn.className.indexOf('share-twitter') > -1 ){
 
@@ -227,7 +237,6 @@ function share(e){
                         encodeURIComponent(shareUrl);
 
     } else if( btn.className.indexOf('share-facebook') > -1 ){
-
         shareWindow = facebookBaseUrl + 
                         encodeURIComponent(shareUrl) + 
                         "&picture=" + 
@@ -242,12 +251,15 @@ function share(e){
 function boot(el) {
 	el.innerHTML = base;
 
-	shareContainer = document.querySelector('#share-container');
-
 	var drawButton = document.querySelector('#start-draw');
 	drawButton.addEventListener('click', createDraw);
 
-	var shareButtons = document.querySelectorAll('#share-button-container button');
+	var countryToggle = document.querySelector('#draw-finished select');
+	countryToggle.addEventListener('change',function(e){
+		selectedCountry = e.target.value;
+	})
+
+	var shareButtons = document.querySelectorAll('.share-button');
 	for(var i=0; i<shareButtons.length; i++){
 		shareButtons[i].addEventListener('click',share);
 	}
