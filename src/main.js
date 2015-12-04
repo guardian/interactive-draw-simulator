@@ -19,7 +19,7 @@ var firstClick = true;
 var groupsOriginal = [
 	{
 		"group": "A",
-		"teams": [{"name":"France","no": 0, "pot": 0, "flag": "/imgs/flags/fr.svg","points":6},"","",""]
+		"teams": [{"name":"France","no": 0, "pot": 0, "flag": "/imgs/flags/fr.svg","points":10},"","",""]
 	},{
 		"group": "B",
 		"teams": ["","","",""]
@@ -100,14 +100,14 @@ function createDraw(first) {
 		group.teams.forEach(function(team){
 			groupDifficulty += team.points;
 		})
-		group.difficulty = groupDifficulty - 10;
+		group.difficulty = (groupDifficulty - 15);
 	})
 	if(first){
 		groups = groupsOriginal;
 	}
 	
 	
-	var simulatorHTML = simulatorTemplate({groups:groups});
+	var simulatorHTML = simulatorTemplate({groups:groups, selectedCountry: selectedCountry});
 	document.querySelector('#draw-container').innerHTML = simulatorHTML;
 
 

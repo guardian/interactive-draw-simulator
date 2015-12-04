@@ -130,7 +130,6 @@ figure.interactive,.interactive.element-interactive{
         .current-flag-container{
             width:14px;
             height:14px;
-            background:#eee;
             float:left;
             border-radius:18px;
             display:inline-block;
@@ -214,10 +213,6 @@ figure.interactive,.interactive.element-interactive{
     				transition: 0.4s opacity;
     			}
 
-    			.team-item-England{
-    				font-weight:bold;
-    			}
-
     			.flag{
     				width:14px;
     				height:14px;
@@ -233,6 +228,7 @@ figure.interactive,.interactive.element-interactive{
     					height:100%;
     					opacity:0;
     					transition: 0.4s opacity;
+                        background:#fff;
     				}
     			}
 
