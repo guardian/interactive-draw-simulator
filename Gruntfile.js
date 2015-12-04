@@ -96,7 +96,7 @@ module.exports = function (grunt) {
     watch: {
       grunt: { files: ['Gruntfile.js'] },
       boot: {
-        files: ['boot/index.html', 'boot/boot.js'],
+        files: ['boot/embed/index.html', 'boot/boot.js'],
         tasks: ['build', 'webpack:dev', 'cachebust'],
         options: { livereload: true }
       },
@@ -121,7 +121,7 @@ module.exports = function (grunt) {
       boot: {
         expand: true,
         cwd: 'boot/',
-        src: ['index.html', 'boot.js'],
+        src: ['embed/index.html', 'boot.js'],
         dest: 'build/'
       },
       imgs: {
@@ -169,7 +169,7 @@ module.exports = function (grunt) {
         options: { headers: { CacheControl: 86400 } },
         files: [{
           cwd: 'build',
-          src: ['js/**/*.js', 'css/**/*.css', 'imgs/**/*.*', 'data/**/*'],
+          src: ['js/**/*.js', 'css/**/*.css', 'imgs/**/*.*', 'data/**/*', 'embed/**/*'],
           dest: s3Cfg.path
         }]
       }

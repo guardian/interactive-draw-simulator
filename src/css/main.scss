@@ -11,10 +11,19 @@ body {
     margin: 0;
     padding: 0;
 }
-
+// 1px dotted #dfdfdf
 // Remove <figure> margin
 figure.interactive,.interactive.element-interactive{
     margin:0;
+}
+.content__meta-container{
+    margin:0;
+    padding:0;
+    min-height:0;
+
+    .meta__extras{
+        display:none;
+    }
 }
 .interactive {
     color:#333;
@@ -24,10 +33,11 @@ figure.interactive,.interactive.element-interactive{
     }
 
     .gv-wrapper{
-    	padding:1.2em 10px;
+    	padding:0 0;
     }
     #draw-header{
         padding-top:1px;
+        border-top:1px dotted #dfdfdf;
     }
 
     #draw-container{
@@ -56,13 +66,13 @@ figure.interactive,.interactive.element-interactive{
     	line-height:24px;
         border-bottom: 1px solid #ececec;
         padding-bottom:18px;
-        margin-bottom:30px;
+        margin-bottom:24px;
     }
     #current-pot{
     	text-align: center;
     	font-family: $f-serif-headline;
-    	margin:6px 0 30px;
-        height:86px;
+    	margin:42px 0 0;
+        height:72px;
         line-height:1.3em;
         p{
             display:inline-block;
@@ -70,29 +80,37 @@ figure.interactive,.interactive.element-interactive{
             vertical-align: top;
             padding-top:0;
             margin-right:5px;
-            font-size:14px;
+            font-size:16px;
             font-weight:bold;
-            
+            span{
+                opacity:0.3;
+            }
+        }
+        &.draw-ended{
+            margin: 30px 0 12px;
         }
         
     }
     #draw-finished{
         font-size:14px;
-        font-weight:bold;
-        max-width:400px;
+        font-weight:normal;
+        max-width:300px;
         margin:0 auto;
         display:none;
-        line-height: 1.3em;
+        line-height: 1.5em;
+        position: relative;
+        text-align: left;
+        font-family: $f-sans-serif-text;
         span{
             opacity:0.3;
         }
 
         select{
-            font-size:18px;
+            font-size:14px;
             vertical-align: top;
             margin-top:0;
             margin-right:1px;
-            width:120px;
+            width:100px;
             margin-left:2px
         }
     }
@@ -118,7 +136,7 @@ figure.interactive,.interactive.element-interactive{
             display:inline-block;
             margin-right:2px;
             overflow: hidden;
-            transition:transform 0.1s;
+            transition:transform 0.2s ease-out;
             line-height:0;
             img{
                 width:100%;
@@ -139,7 +157,7 @@ figure.interactive,.interactive.element-interactive{
     	font-size:20px;
     	padding:0 60px;
     	outline:none;
-    	margin:30px auto 0;
+    	margin:24px auto 0;
     	display:block;
     	cursor: pointer;
     	&:hover{
@@ -154,6 +172,7 @@ figure.interactive,.interactive.element-interactive{
 
     	h3{
     		font-family:$f-serif-headline;
+            font-weight:bold;
     		font-size:20px;
     		margin:0 0 6px;
             line-height:1em;
@@ -188,6 +207,7 @@ figure.interactive,.interactive.element-interactive{
     			position: relative;
     			padding-left:20px;
     			margin-bottom:4px;
+                min-height:21px;
 
     			.team-name{
     				opacity:0;
@@ -233,10 +253,12 @@ figure.interactive,.interactive.element-interactive{
     #share-buttons{
         line-height:0;
         font-size:0;
+        display:inline-block;
+        vertical-align: top;
     }
     .share-button{
-        width:28px;
-        height:28px;
+        width:24px;
+        height:24px;
         border-radius:40px;
         border:none;
         outline: none;
@@ -244,10 +266,10 @@ figure.interactive,.interactive.element-interactive{
         background-position: center;
         background-repeat: no-repeat;
         cursor:pointer;
-        background-size:28px;
+        background-size:24px;
         margin-right: 2px;
         display:inline-block;
-        margin-top:10px;
+        margin-top:0;
         &.share-twitter{
             background-image: url(/imgs/twitter.svg);
         }
@@ -299,10 +321,6 @@ figure.interactive,.interactive.element-interactive{
         	width:33%;
             margin-bottom:12px;
         }
-        .gv-wrapper{
-            padding-left:20px;
-            padding-right:20px;
-        }
     }
 
     @media ( min-width: 540px ) {
@@ -318,6 +336,7 @@ figure.interactive,.interactive.element-interactive{
         		.team-name{
         			font-size:16px;
         		}
+                 min-height:27px;
         	}
         }
         #current-pot p{
@@ -351,7 +370,8 @@ figure.interactive,.interactive.element-interactive{
             margin-top:24px;
         }
         #current-pot{
-            margin: 54px 0 0;
+            margin: 48px 0 24px;
+            height:55px;
             p{
                 font-size:18px;
             }
@@ -360,12 +380,19 @@ figure.interactive,.interactive.element-interactive{
                 height: 20px;
             }
             &.draw-ended{
-                margin:24px 0 30px;
+                margin:30px 0 42px;
             }
+        }
+        #start-draw{
+            margin-top:30px;
         }
 
          #draw-finished{
-            font-size:18px;
+            max-width:320px;
+            font-size:16px;
+            select{
+                font-size:16px;
+            }
         }
     }
     @media(min-width:breakpoints(desktop)){ //980px
@@ -377,7 +404,7 @@ figure.interactive,.interactive.element-interactive{
             line-height:30px;
         }
         #draw-wrapper{
-            margin-left:140px;
+            
         }
         #draw-header{
             max-width:620px;
@@ -402,7 +429,7 @@ figure.interactive,.interactive.element-interactive{
     }
     @media(min-width:breakpoints(leftCol)){ //1140px
         #draw-wrapper{
-            
+            margin-left:160px;
         }
         .group-container{
             width:280px;
@@ -410,33 +437,7 @@ figure.interactive,.interactive.element-interactive{
     }
     @media(min-width:breakpoints(wide)){ //1300px
         #draw-wrapper{
-            margin-left:220px;
+            margin-left:240px;
         }
     }
 }
-
-// @for $i from 1 through 24 {
-//     $xPosition: random(100);
-//     $yPosition: random(50);
-//     $timeMove: random(2)+1;
-//     $timeRotate: random(5)+2;
-
-//     @keyframes move-#{$i}{
-//         0%{transform: translate(0,0)}
-//         50%{transform: translate($xPosition + px,$yPosition + px)}
-//         100%{transform: translate(0,0)}
-//     } 
-
-//     .team-circle-#{$i}{
-//         animation: move-#{$i} linear infinite;
-//         animation-duration: $timeMove +s;
-//         &:before{
-//             animation: rotate 1s linear infinite;
-//         }
-//     }
-// }
-
-// @keyframes rotate{
-//     0%{transform: rotate(0)}
-//     100%{transform: rotate(360deg)}
-// }

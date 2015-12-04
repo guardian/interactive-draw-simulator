@@ -5,7 +5,8 @@
  * ./utils/detect.js	- Device and env detection
  */
 
-// var getJSON = require('./utils/getjson');
+var ga = require('./utils/analytics');
+var iframeMessenger = require('./utils/iframeMessenger');
 var base = require('./html/base-with-margins.html');
 var Handlebars = require('handlebars/dist/cjs/handlebars');
 var pots = require('./data/data.json');
@@ -13,11 +14,12 @@ var potsContainer;
 var groups;
 var nextPotTime, nextTeamTime;
 var selectedCountry = "england";
+var firstClick = true;
 
 var groupsOriginal = [
 	{
 		"group": "A",
-		"teams": [{"name":"France","no": 0, "pot": 0, "flag": "/imgs/flags/fr.svg","rank":6},"","",""]
+		"teams": [{"name":"France","no": 0, "pot": 0, "flag": "/imgs/flags/fr.svg","points":6},"","",""]
 	},{
 		"group": "B",
 		"teams": ["","","",""]
@@ -36,18 +38,12 @@ var groupsOriginal = [
 	}
 ]
 
-var difficulty = {
-	"min": 4,
-	"max": 24,
-	"total": 20
-}
-
 var simulatorTemplate = Handlebars.compile( 
     require('./html/simulator-template.html'), 
     { compat: true }
 );
 
-function createDraw() {
+function createDraw(first) {
 	if(nextPotTime){
 		clearTimeout(nextPotTime);
 		nextPotTime = null;
@@ -59,6 +55,9 @@ function createDraw() {
 	groups = JSON.parse(JSON.stringify(groupsOriginal));
 	var order = 1;
 	document.querySelector('#current-pot p').innerHTML = "";
+	if(first){
+		document.querySelector('#current-pot p').innerHTML = "<span>Ready to start</span>";
+	}
 	document.querySelector('#current-pot #current-flags').innerHTML = "";
 	document.querySelector('#current-pot').className -= " draw-ended";
 
@@ -99,31 +98,28 @@ function createDraw() {
 	groups.forEach(function(group){
 		var groupDifficulty = 0;
 		group.teams.forEach(function(team){
-			groupDifficulty += team.rank;
+			groupDifficulty += team.points;
 		})
-		group.difficulty = 10 - Math.round(((groupDifficulty - difficulty.min)/difficulty.total)*10);
+		group.difficulty = groupDifficulty - 10;
 	})
-
+	if(first){
+		groups = groupsOriginal;
+	}
 	
 	
 	var simulatorHTML = simulatorTemplate({groups:groups});
 	document.querySelector('#draw-container').innerHTML = simulatorHTML;
 
-	animateDraw(groups);
+
+	animateDraw(first);
 }
 
-function fillPotContainer(team){
-	var teamCircle = document.createElement('div');
-	teamCircle.className = "team-circle team-circle-"+ team.no;
-	teamCircle.style.left = Math.random()*400 + "px";
-	teamCircle.style.top = Math.random()*100 + "px";
-	potsContainer.appendChild(teamCircle);
-}
-
-function animateDraw(){
+function animateDraw(first){
 	var currentPot = 1;
-	updatePot(currentPot);
-
+	if(!first){
+		updatePot(currentPot);
+	}
+	
 	function animateTeam(no,newPot){
 		var teamEl = document.querySelector('.team-order-' + no);
 		var currentFlagEl = document.querySelector('.current-flag-' + teamEl.getAttribute('data-team-id'));
@@ -154,8 +150,16 @@ function animateDraw(){
 			onAnimationEnd(groups);
 		}
 	}
-
-	animateTeam(0,currentPot);
+	if(!first){
+		animateTeam(0,currentPot);
+	}else{
+		var teamEls = document.querySelectorAll('.group-container ul li');
+		for( var i=0; i<teamEls.length; i++){
+			console.log(teamEls[0])
+			teamEls[i].className += " drawn";
+		}
+	}
+	
 }
 
 function updatePot(pot){
@@ -202,13 +206,13 @@ function onAnimationEnd(){
 
 function share(e){
 	var favoriteGroup;
+	var favoriteGroupObject;
     var btn = e.srcElement;
     var shareWindow;
     var twitterBaseUrl = "http://twitter.com/share?text=";
     var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
-    var shareMessageText = "This would be my favourite Euro 2016 group\r";
-    var shareMessageList = "";
     var shareImage = "";
+    var shareMessageList = "";
     var shareUrl = "http://gu.com";
 
     groups.forEach(function(group){
@@ -220,17 +224,16 @@ function share(e){
 	})
 
 	favoriteGroup.teams.forEach(function(team,i){
-		var isFavorite = (team.id === selectedCountry) ? "⚽️" : ""
-		shareMessageList +=  "\r" + (i+1) + "." + team.name + isFavorite;
+		var isFavorite = (team.id === selectedCountry) ? "⚽️" : "";
+		if(isFavorite){favoriteGroupObject = team};
+
+		shareMessageList +=  "\r" + (i+1) + "." + (team.shortname || team.name) + isFavorite;
 	})
 
-	console.log(shareMessageList);
-
-
+	var shareMessageText = "My draw for " + favoriteGroupObject.name + "'s Euro 2016 group\r";
 	var shareMessage = shareMessageText + shareMessageList + "\r\rCreate your own";
 
-    if( btn.className.indexOf('share-twitter') > -1 ){
-
+    if(btn.className.indexOf('share-twitter') > -1){
         shareWindow = twitterBaseUrl + 
                         encodeURIComponent(shareMessage) + 
                         "&url=" + 
@@ -245,18 +248,35 @@ function share(e){
     }
 
     window.open(shareWindow, "Share", "width=640,height=320"); 
+
+    var socialMedium = (btn.className.indexOf('share-twitter') > -1) ? "twitter" : "facebook";
+    ga('send', 'event', 'draw', 'shared on ' + socialMedium, selectedCountry);
 }
 
 
 function boot(el) {
 	el.innerHTML = base;
+	ga('create','UA-25353554-31')
+	ga('send','pageview')
 
 	var drawButton = document.querySelector('#start-draw');
-	drawButton.addEventListener('click', createDraw);
+	drawButton.addEventListener('click', function(e){
+		if(firstClick){
+			firstClick = false;
+			if(e.target){
+				if(window.innerWidth < 620){
+					window.scroll('0', e.target.getBoundingClientRect().top -20 );
+				}
+			}
+		}
+		createDraw(false);
+		ga('send', 'event', 'draw', 'created', '');
+	});
 
 	var countryToggle = document.querySelector('#draw-finished select');
 	countryToggle.addEventListener('change',function(e){
 		selectedCountry = e.target.value;
+		ga('send', 'event', 'country', 'switched', selectedCountry);
 	})
 
 	var shareButtons = document.querySelectorAll('.share-button');
@@ -264,7 +284,8 @@ function boot(el) {
 		shareButtons[i].addEventListener('click',share);
 	}
 
-	createDraw();
+	createDraw(true);
+	iframeMessenger.enableAutoResize();
 }
 
 module.exports = { boot: boot };

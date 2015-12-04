@@ -5,6 +5,6 @@ define(['/js/main.js'], function(app) {
     css.href = '/css/main.css';
     var head = document.head || document.getElementsByTagName('head')[0];
     head.appendChild(css);
-    
+
     return app;
 });

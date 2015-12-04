@@ -4,14 +4,16 @@
 			<span class="difficultyMeter">
 				Difficulty
 				<span class="odometer"></span>
-				/10
+				/5
 			</span>
 		</h3>
 		<ul>
 		{{#each teams}}
 			<li class="team-order-{{no}}" data-team-id="{{id}}">
 				<span class="flag">
-					<img src="{{flag}}" />
+					{{#if flag}}
+					<img src="{{flag}}" style="max-width:40px" />
+					{{/if}}
 				</span>
 				<span class="team-name team-item-{{name}}">{{name}}</span>
 			</li>
