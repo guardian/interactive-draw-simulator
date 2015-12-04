@@ -155,7 +155,6 @@ function animateDraw(first){
 	}else{
 		var teamEls = document.querySelectorAll('.group-container ul li');
 		for( var i=0; i<teamEls.length; i++){
-			console.log(teamEls[0])
 			teamEls[i].className += " drawn";
 		}
 	}
@@ -213,7 +212,7 @@ function share(e){
     var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
     var shareImage = "";
     var shareMessageList = "";
-    var shareUrl = "http://gu.com";
+    var shareUrl = "http://gu.com/p/4en27";
 
     groups.forEach(function(group){
 		group.teams.forEach(function(team){
