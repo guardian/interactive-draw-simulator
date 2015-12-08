@@ -130,7 +130,7 @@ function animateDraw(first){
 		}
 
 		if(no < 23){
-			var testspeed = false;
+			var testspeed = 10;
 			if(no === 5 || no === 11 || no === 17){
 				no++;
 				currentPot++;
@@ -206,7 +206,7 @@ function onAnimationEnd(){
 function share(e){
 	var favoriteGroup;
 	var favoriteGroupObject;
-    var btn = e.srcElement;
+    var btn = e.target;
     var shareWindow;
     var twitterBaseUrl = "http://twitter.com/share?text=";
     var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
