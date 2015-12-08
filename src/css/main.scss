@@ -20,9 +20,15 @@ figure.interactive,.interactive.element-interactive{
     margin:0;
     padding:0;
     min-height:0;
+    padding-bottom:20px;
 
     .meta__extras{
-        display:none;
+        // display:none;
+    }
+    @media(max-width:740px){
+        .meta__save-for-later, .meta__numbers{
+            display: none !important;
+        }
     }
 }
 .interactive {
@@ -258,7 +264,7 @@ figure.interactive,.interactive.element-interactive{
         border-radius:40px;
         border:none;
         outline: none;
-        background: #dedede;
+        background: #333;
         background-position: center;
         background-repeat: no-repeat;
         cursor:pointer;
@@ -273,7 +279,7 @@ figure.interactive,.interactive.element-interactive{
             background-image: url(/imgs/facebook.svg);
         }
         &:hover{
-            background-color:#888;
+            background-color:#555;
         }
     }
     #share-container{
@@ -389,6 +395,11 @@ figure.interactive,.interactive.element-interactive{
             select{
                 font-size:16px;
             }
+        }
+        .share-button{
+            width:28px;
+            height:28px;
+            margin-top:-2px;
         }
     }
     @media(min-width:breakpoints(desktop)){ //980px

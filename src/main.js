@@ -212,7 +212,7 @@ function share(e){
     var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
     var shareImage = "";
     var shareMessageList = "";
-    var shareUrl = "http://gu.com/p/4en27";
+    var shareUrl = "http://gu.com/p/4en27/stw";
 
     groups.forEach(function(group){
 		group.teams.forEach(function(team){
