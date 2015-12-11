@@ -100,7 +100,7 @@ function createDraw(first) {
 		group.teams.forEach(function(team){
 			groupDifficulty += team.points;
 		})
-		group.difficulty = (groupDifficulty - 15);
+		group.difficulty = (groupDifficulty - 14);
 	})
 	if(first){
 		groups = groupsOriginal;
@@ -130,7 +130,7 @@ function animateDraw(first){
 		}
 
 		if(no < 23){
-			var testspeed = 10;
+			var testspeed = false;
 			if(no === 5 || no === 11 || no === 17){
 				no++;
 				currentPot++;
